@@ -1,6 +1,6 @@
 # Utility Management Application
 
-Manage all your utliity bills (currently only Telangana TSSPCDCL and HMWSSB included)
+Manage all your utliity bills (currently only Telangana TSSPDCL and HMWSSB included)
 
 ## Install the dependencies
 ```bash
