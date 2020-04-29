@@ -1,0 +1,37 @@
+{
+  "name": "utility",
+  "version": "0.0.1",
+  "description": "Get Electricity & Water bills",
+  "productName": "Utility Bills Manager",
+  "cordovaId": "org.cordova.quasar.app",
+  "capacitorId": "",
+  "author": "Jasim Jabri",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js,.vue src",
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.0.0",
+    "core-js": "^2.6.5",
+    "firebase": "^7.7.0",
+    "quasar": "^1.0.0",
+    "vuefire": "^2.2.1"
+  },
+  "devDependencies": {
+    "@quasar/app": "^1.6.0",
+    "@vue/eslint-config-prettier": "^4.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.10.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-vue": "^5.0.0"
+  },
+  "engines": {
+    "node": ">= 10.18.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  },
+  "browserslist": [
+    "last 1 version, not dead, ie >= 11"
+  ]
+}
