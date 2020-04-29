@@ -1,10 +1,10 @@
-# Quasar App (test)
+# Utility Management Application
 
-A Quasar Framework app
+Manage all your utliity bills (currently only Telangana TSSPCDCL and HMWSSB included)
 
 ## Install the dependencies
 ```bash
-yarn
+npm install
 ```
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
