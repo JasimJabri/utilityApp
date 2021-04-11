@@ -75,7 +75,7 @@
     >
       <q-list
         class="bg-grey-2"
-        style="padding: 2px; width: 95vw; height: 95vh; max-width: 700px; max-height: 750px;"
+        style="padding: 2px; width: 95vw; height: 95vh; max-width: 700px; max-height: 800px;"
       >
         <q-item
           class="bg-black text-white  rounded-borders q-mb-sm"
