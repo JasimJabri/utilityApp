@@ -74,11 +74,11 @@
       transition-hide="slide-down"
     >
       <q-list
-        class="bg-grey-2"
+        class="bg-grey-1"
         style="padding: 2px; width: 95vw; height: 95vh; max-width: 440px; max-height: 700px;"
       >
         <q-item
-          class="bg-black text-white  rounded-borders q-mb-sm"
+          class="bg-black text-white rounded-borders q-mb-md"
           style="text-align: center; font-size: 22px; font-weight: bold; letter-spacing: 3px; text-transform: uppercase;"
         >
           <q-item-section> {{ viewUnitData.tenantName }}</q-item-section>
