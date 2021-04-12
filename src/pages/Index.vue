@@ -75,7 +75,7 @@
     >
       <q-list
         class="bg-grey-2"
-        style="padding: 2px; width: 95vw; height: 95vh; max-width: 700px; max-height: 780px;"
+        style="padding: 2px; width: 95vw; height: 95vh; max-width: 440px; max-height: 700px;"
       >
         <q-item
           class="bg-black text-white  rounded-borders q-mb-sm"
@@ -107,7 +107,7 @@
         </q-item>
         <q-item>
           <q-input
-            style="width: 100%;  text-transform: capitalize;"
+            style="width: 100%; text-transform: capitalize;"
             standout
             type="text"
             :readonly="true"
@@ -116,83 +116,79 @@
           >
             <template v-slot:before>
               <q-icon
-                name="mail"
+                name="home"
                 style="font-size: 2rem; color: black;"
               ></q-icon>
             </template>
           </q-input>
         </q-item>
-        <q-item>
-          <q-input
-            filled
-            hint="Unique Service Number"
-            style="width: 100%;"
-            type="text"
-            :readonly="true"
-            v-model="viewUnitData.uscn"
-          >
-            <template v-slot:before>
-              <q-icon
-                name="whatshot"
-                style="font-size: 2rem; color: black;"
-              ></q-icon>
-            </template>
-            <template v-slot:append>
-          <q-btn round dense flat icon="content_copy" @click="clipboard(viewUnitData.uscn)" />
-        </template>
-          </q-input>
-        </q-item>
-        <q-item>
-          <q-input
-            filled
-            hint="Service Number"
-            style="width: 100%;"
-            type="text"
-            :readonly="true"
-            v-model="viewUnitData.serviceno"
-          >
-            <template v-slot:before>
-              <q-icon
-                name="all_inclusive"
-                style="font-size: 2rem; color: black;"
-              ></q-icon>
-            </template>
-          </q-input>
-        </q-item>
-        <q-item>
-          <q-input
-            filled
-            hint="Due Date"
-            style="width: 100%;"
-            type="text"
-            :readonly="true"
-            v-model="viewUnitData.dueDate"
-          >
-            <template v-slot:before>
-              <q-icon
-                name="warning"
-                style="font-size: 2rem; color: black;"
-              ></q-icon>
-            </template>
-          </q-input>
-        </q-item>
-        <q-item>
-          <q-input
-            filled
-            hint="Amount"
-            style="width: 100%;"
-            type="text"
-            :readonly="true"
-            v-model="viewUnitData.amount"
-          >
-            <template v-slot:before>
-              <q-icon
-                name="warning"
-                style="font-size: 2rem; color: black;"
-              ></q-icon>
-            </template>
-          </q-input>
-        </q-item>
+        <div class="row flex justify-between">
+          <q-item class="col-6">
+            <q-input
+              filled
+              hint="Service Number"
+              type="text"
+              :readonly="true"
+              v-model="viewUnitData.serviceno"
+            >
+              <template v-slot:before>
+                <q-icon
+                  name="tag"
+                  style="font-size: 2rem; color: black;"
+                ></q-icon>
+              </template>
+            </q-input>
+          </q-item>
+          <q-item class="col-6">
+            <q-input
+              filled
+              hint="Unique Service Number"
+              type="text"
+              :readonly="true"
+              v-model="viewUnitData.uscn"
+            >
+              <template v-slot:append>
+                <q-btn
+                  round
+                  dense
+                  flat
+                  icon="content_copy"
+                  @click="clipboard(viewUnitData.uscn)"
+                />
+              </template>
+            </q-input>
+          </q-item>
+        </div>
+        <div class="row flex justify-end">
+          <q-item class="col-6">
+            <q-input
+              filled
+              hint="Due Date"
+              type="text"
+              :readonly="true"
+              v-model="viewUnitData.dueDate"
+            >
+              <template v-slot:before>
+                <q-icon
+                  name="event_available"
+                  style="font-size: 2rem; color: black;"
+                ></q-icon>
+              </template>
+            </q-input>
+          </q-item>
+          <q-item class="col-6">
+            <q-input
+              filled
+              hint="Bill Date"
+              type="text"
+              :readonly="true"
+              v-model="viewUnitData.dueDate"
+            >
+            </q-input>
+          </q-item>
+        </div>
+
+      
         <q-item>
           <q-input
             filled
@@ -204,20 +200,37 @@
           >
             <template v-slot:before>
               <q-icon
-                name="warning"
+                name="update"
                 style="font-size: 2rem; color: black;"
               ></q-icon>
             </template>
           </q-input>
         </q-item>
-        <div class="row justify-around q-py-sm">
+          <q-item>
+          <q-input
+            filled
+            hint="Amount"
+            style="width: 100%;"
+            type="text"
+            :readonly="true"
+            v-model="viewUnitData.amount"
+          >
+            <template v-slot:before>
+              <q-icon
+                name="payment"
+                style="font-size: 2rem; color: black;"
+              ></q-icon>
+            </template>
+          </q-input>
+        </q-item>
+        <q-item  class="flex justify-center q-pt-md">
           <q-btn
             color="red"
-            style="width: 50%; font-size: 1rem; letter-spacing: 5px;"
+            style="font-size: 1rem; letter-spacing: 5px;"
             @click="closeViewModal()"
             >Cancel</q-btn
           >
-        </div>
+        </q-item>
       </q-list>
     </q-dialog>
   </q-page>
@@ -225,7 +238,7 @@
 
 <script>
 import { db } from "../db";
-import { copyToClipboard } from 'quasar'
+import { copyToClipboard } from "quasar";
 
 export default {
   name: "PageIndex",
@@ -281,7 +294,7 @@ export default {
   },
   methods: {
     viewUnit(unit, uIndex, pIndex) {
-      // console.log(unit, uIndex, pIndex);
+      console.log(unit, uIndex, pIndex);
       this.viewUnitModal = true;
       this.originalUnitData = Object.assign({}, unit);
       this.originalUnitData.uIndex = uIndex;
@@ -336,19 +349,18 @@ export default {
       this.$q.loading.hide();
       this.readOnly = true;
     },
-    clipboard(uscn){
+    clipboard(uscn) {
       copyToClipboard(uscn)
-  .then(() => {
-     this.$q.notify({
-              message: `${uscn} copied to clipboard`,
-              type: "positive",
-            });
-  })
-  .catch(() => {
-    console.log('Error')
-  })
-
-    }
+        .then(() => {
+          this.$q.notify({
+            message: `${uscn} copied to clipboard`,
+            type: "positive",
+          });
+        })
+        .catch(() => {
+          console.log("Error");
+        });
+    },
   },
 };
 </script>
