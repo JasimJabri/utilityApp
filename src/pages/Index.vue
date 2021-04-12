@@ -75,7 +75,7 @@
     >
       <q-list
         class="bg-grey-1"
-        style="padding: 2px; width: 95vw; height: 95vh; max-width: 440px; max-height: 700px;"
+        style="padding: 2px; width: 95vw; height: 95vh; max-width: 440px; max-height: 800px;"
       >
         <q-item
           class="bg-black text-white rounded-borders q-mb-md"
@@ -122,6 +122,23 @@
             </template>
           </q-input>
         </q-item>
+          <q-item>
+            <q-input
+            class="full-width"
+              filled
+              hint="Meter Owner Name"
+              type="text"
+              :readonly="true"
+              v-model="viewUnitData.servicename"
+            >
+              <template v-slot:before>
+                <q-icon
+                  name="event_available"
+                  style="font-size: 2rem; color: black;"
+                ></q-icon>
+              </template>
+            </q-input>
+          </q-item>
         <div class="row flex justify-between">
           <q-item class="col-6">
             <q-input
@@ -182,7 +199,7 @@
               hint="Bill Date"
               type="text"
               :readonly="true"
-              v-model="viewUnitData.dueDate"
+              v-model="viewUnitData.billDate"
             >
             </q-input>
           </q-item>
