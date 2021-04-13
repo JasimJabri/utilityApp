@@ -68,6 +68,7 @@
     </q-list>
 
     <q-dialog
+      @click="currentDate=Date.now()"
       v-model="viewUnitModal"
       persistent
       transition-show="slide-up"
@@ -90,6 +91,7 @@
         </q-item>
         <q-item>
           <q-input
+            filled
             style="width:100%;  text-transform: capitalize;"
             standout
             hint="Tenant Name"
@@ -99,7 +101,7 @@
           >
             <template v-slot:before>
               <q-icon
-                name="person"
+                name="perm_identity"
                 style="font-size: 2rem; color: black;"
               ></q-icon>
             </template>
@@ -107,7 +109,9 @@
         </q-item>
         <q-item>
           <q-input
-            style="width: 100%; text-transform: capitalize;"
+            filled
+            class= "full-width"
+            style="text-transform: capitalize;"
             standout
             type="text"
             :readonly="true"
@@ -122,24 +126,25 @@
             </template>
           </q-input>
         </q-item>
-          <q-item>
-            <q-input
+        <q-item>
+          <q-input
+            filled
             class="full-width"
-              filled
-              hint="Meter Owner Name"
-              type="text"
-              :readonly="true"
-              v-model="viewUnitData.servicename"
-            >
-              <template v-slot:before>
-                <q-icon
-                  name="event_available"
-                  style="font-size: 2rem; color: black;"
-                ></q-icon>
-              </template>
-            </q-input>
-          </q-item>
-       
+            style="text-transform: capitalize;"
+            hint="Service Meter Owner Name"
+            type="text"
+            :readonly="true"
+            v-model="viewUnitData.servicename"
+          >
+            <template v-slot:before>
+              <q-icon
+                name="person"
+                style="font-size: 2rem; color: black;"
+              ></q-icon>
+            </template>
+          </q-input>
+        </q-item>
+
         <div class="row flex">
           <q-item class="col-6">
             <q-input
@@ -168,7 +173,7 @@
             </q-input>
           </q-item>
         </div>
- <div class="row flex justify-between">
+        <div class="row flex">
           <q-item class="col-6">
             <q-input
               filled
@@ -206,25 +211,25 @@
           </q-item>
         </div>
         <div class="row flex">
-          
-         <q-item class="col-6">
-          <q-input
-            filled
-            hint="Amount"
-            type="text"
-            :readonly="true"
-            v-model="viewUnitData.amount"
-          >
-            <template v-slot:before>
-              <q-icon
-                name="payment"
-                style="font-size: 2rem; color: black;"
-              ></q-icon>
-            </template>
-          </q-input>
-        </q-item>
+          <q-item class="col-6">
+            <q-input
+              filled
+              hint="Amount"
+              type="text"
+              :readonly="true"
+              v-model="viewUnitData.amount"
+            >
+              <template v-slot:before>
+                <q-icon
+                  style="font-size: 2rem; color: black;"
+                >
+                 <img style="height: 22px; width: 22px;" src="~assets/rupee-indian.svg" />
+                </q-icon>
+              </template>
+            </q-input>
+          </q-item>
 
-         <q-item class="col-6">
+          <q-item class="col-6">
             <q-input
               filled
               hint="Electricity Revenue Office"
@@ -252,8 +257,8 @@
             </template>
           </q-input>
         </q-item>
-        
-        <q-item  class="flex justify-center q-pt-md">
+
+        <q-item class="flex justify-center q-pt-md">
           <q-btn
             class="q-px-lg"
             color="red"
@@ -269,7 +274,7 @@
 
 <script>
 import { db } from "../db";
-import { copyToClipboard, date } from "quasar";
+import { copyToClipboard } from "quasar";
 
 export default {
   name: "PageIndex",
@@ -285,11 +290,10 @@ export default {
       addUnitData: [],
       originalUnitData: {},
       maximizedToggle: true,
-      currentDate: 0
+      currentDate: 0,
     };
   },
   created() {
-    this.currentDate = Date.now();
     this.properties.length = 0;
     let user = this.$q.localStorage.getItem("user");
     let isLoggedIn = this.$q.localStorage.getItem("isLoggedIn");
@@ -395,32 +399,35 @@ export default {
         });
     },
     timeDiffCalc(datePast, dateNow) {
-    let diffInMilliSeconds = Math.abs(datePast - dateNow) / 1000;
+      let diffInMilliSeconds = Math.abs(datePast - dateNow) / 1000;
 
-    // calculate days
-    const days = Math.floor(diffInMilliSeconds / 86400);
-    diffInMilliSeconds -= days * 86400;
+      // calculate days
+      const days = Math.floor(diffInMilliSeconds / 86400);
+      diffInMilliSeconds -= days * 86400;
 
-    // calculate hours
-    const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
-    diffInMilliSeconds -= hours * 3600;
+      // calculate hours
+      const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
+      diffInMilliSeconds -= hours * 3600;
 
-    // calculate minutes
-    const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
-    diffInMilliSeconds -= minutes * 60;
+      // calculate minutes
+      const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
+      diffInMilliSeconds -= minutes * 60;
 
-    let difference = '';
-    if (days > 0) {
-      difference += (days === 1) ? `${days} day, ` : `${days} days, `;
-    }
-    if (hours > 0) {
-      difference += (hours === 1) ? `${hours} hour, ` : `${hours} hours, `;
-    }
-    difference += (minutes === 0 || hours === 1) ? `${minutes} minutes` : `${minutes} minutes`; 
+      let difference = "";
+      if (days > 0) {
+        difference += days === 1 ? `${days} day, ` : `${days} days, `;
+      }
+      if (hours > 0) {
+        difference += hours === 1 ? `${hours} hour, ` : `${hours} hours, `;
+      }
+      difference +=
+        minutes === 0 || hours === 1
+          ? `${minutes} minutes`
+          : `${minutes} minutes`;
 
-    difference += " ago"
-    return difference;
-  }
+      difference += " ago";
+      return difference;
+    },
   },
 };
 </script>
