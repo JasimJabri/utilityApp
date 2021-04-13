@@ -129,9 +129,8 @@
         <q-item>
           <q-input
             filled
-            class="full-width"
-            style="text-transform: capitalize;"
-            hint="Service Meter Owner Name"
+            class="full-width text-capitalize"
+            hint="service meter owner name"
             type="text"
             :readonly="true"
             v-model="viewUnitData.servicename"
@@ -243,8 +242,8 @@
         <q-item>
           <q-input
             filled
+            class="full-width"
             hint="Last Updated"
-            style="width: 100%;"
             type="text"
             :readonly="true"
             :value="timeDiffCalc(viewUnitData.lastUpdated, currentDate)"
