@@ -139,7 +139,36 @@
               </template>
             </q-input>
           </q-item>
-        <div class="row flex justify-between">
+       
+        <div class="row flex">
+          <q-item class="col-6">
+            <q-input
+              filled
+              hint="Due Date"
+              type="text"
+              :readonly="true"
+              v-model="viewUnitData.dueDate"
+            >
+              <template v-slot:before>
+                <q-icon
+                  name="event_available"
+                  style="font-size: 2rem; color: black;"
+                ></q-icon>
+              </template>
+            </q-input>
+          </q-item>
+          <q-item class="col-6">
+            <q-input
+              filled
+              hint="Bill Date"
+              type="text"
+              :readonly="true"
+              v-model="viewUnitData.billDate"
+            >
+            </q-input>
+          </q-item>
+        </div>
+ <div class="row flex justify-between">
           <q-item class="col-6">
             <q-input
               filled
@@ -176,58 +205,12 @@
             </q-input>
           </q-item>
         </div>
-        <div class="row flex justify-end">
-          <q-item class="col-6">
-            <q-input
-              filled
-              hint="Due Date"
-              type="text"
-              :readonly="true"
-              v-model="viewUnitData.dueDate"
-            >
-              <template v-slot:before>
-                <q-icon
-                  name="event_available"
-                  style="font-size: 2rem; color: black;"
-                ></q-icon>
-              </template>
-            </q-input>
-          </q-item>
-          <q-item class="col-6">
-            <q-input
-              filled
-              hint="Bill Date"
-              type="text"
-              :readonly="true"
-              v-model="viewUnitData.billDate"
-            >
-            </q-input>
-          </q-item>
-        </div>
-
-      
-        <q-item>
-          <q-input
-            filled
-            hint="Last Updated"
-            style="width: 100%;"
-            type="text"
-            :readonly="true"
-            v-model="viewUnitData.lastUpdated"
-          >
-            <template v-slot:before>
-              <q-icon
-                name="update"
-                style="font-size: 2rem; color: black;"
-              ></q-icon>
-            </template>
-          </q-input>
-        </q-item>
-          <q-item>
+        <div class="row flex">
+          
+         <q-item class="col-6">
           <q-input
             filled
             hint="Amount"
-            style="width: 100%;"
             type="text"
             :readonly="true"
             v-model="viewUnitData.amount"
@@ -240,10 +223,41 @@
             </template>
           </q-input>
         </q-item>
+
+         <q-item class="col-6">
+            <q-input
+              filled
+              hint="Electricity Revenue Office"
+              type="text"
+              :readonly="true"
+              v-model="viewUnitData.ero"
+            >
+            </q-input>
+          </q-item>
+        </div>
+        <q-item>
+          <q-input
+            filled
+            hint="Last Updated"
+            style="width: 100%;"
+            type="text"
+            :readonly="true"
+            :value="timeDiffCalc(viewUnitData.lastUpdated, currentDate)"
+          >
+            <template v-slot:before>
+              <q-icon
+                name="update"
+                style="font-size: 2rem; color: black;"
+              ></q-icon>
+            </template>
+          </q-input>
+        </q-item>
+        
         <q-item  class="flex justify-center q-pt-md">
           <q-btn
+            class="q-px-lg"
             color="red"
-            style="font-size: 1rem; letter-spacing: 5px;"
+            style="font-size: 1rem; letter-spacing: 7px;"
             @click="closeViewModal()"
             >Cancel</q-btn
           >
@@ -255,7 +269,7 @@
 
 <script>
 import { db } from "../db";
-import { copyToClipboard } from "quasar";
+import { copyToClipboard, date } from "quasar";
 
 export default {
   name: "PageIndex",
@@ -271,9 +285,11 @@ export default {
       addUnitData: [],
       originalUnitData: {},
       maximizedToggle: true,
+      currentDate: 0
     };
   },
   created() {
+    this.currentDate = Date.now();
     this.properties.length = 0;
     let user = this.$q.localStorage.getItem("user");
     let isLoggedIn = this.$q.localStorage.getItem("isLoggedIn");
@@ -378,6 +394,33 @@ export default {
           console.log("Error");
         });
     },
+    timeDiffCalc(datePast, dateNow) {
+    let diffInMilliSeconds = Math.abs(datePast - dateNow) / 1000;
+
+    // calculate days
+    const days = Math.floor(diffInMilliSeconds / 86400);
+    diffInMilliSeconds -= days * 86400;
+
+    // calculate hours
+    const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
+    diffInMilliSeconds -= hours * 3600;
+
+    // calculate minutes
+    const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
+    diffInMilliSeconds -= minutes * 60;
+
+    let difference = '';
+    if (days > 0) {
+      difference += (days === 1) ? `${days} day, ` : `${days} days, `;
+    }
+    if (hours > 0) {
+      difference += (hours === 1) ? `${hours} hour, ` : `${hours} hours, `;
+    }
+    difference += (minutes === 0 || hours === 1) ? `${minutes} minutes` : `${minutes} minutes`; 
+
+    difference += " ago"
+    return difference;
+  }
   },
 };
 </script>
