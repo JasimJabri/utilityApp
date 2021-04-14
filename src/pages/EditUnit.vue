@@ -12,7 +12,7 @@
           <q-item>
             <q-input
               outlined
-              autofocus
+              focus
               class="full-width text-capitalize text-h6"
               hint="Unit Name"
               type="text"

@@ -46,13 +46,12 @@
       >
 
         <q-list
-          class="bg-grey-2"
-          style="padding:10px 10px 20px 10px; max-width: 700px; width: 100%;"
+          class="bg-grey-2 full-width"
         >
       <q-form>
           <q-item
-            class="bg-black text-white"
-            style="text-align: center; font-size: 22px; font-weight: bold; letter-spacing: 3px; text-transform: uppercase;"
+            class="bg-black text-white rounded-borders text-h5 text-weight-bold text-uppercase text-center"
+            style="margin: 2px; letter-spacing: 6px;"
           >
             <q-item-section>{{selectedProperty.name}}</q-item-section>
             <div @click="saveProperty($event.srcElement.innerText, selectedProperty)">

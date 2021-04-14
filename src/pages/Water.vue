@@ -1,5 +1,7 @@
 <template>
   <q-page padding class="bg-light-blue-1">
+    <div class="row justify-center">
+
     <q-item>
       <q-btn @click="contents()" label="Array Contents"></q-btn>
     </q-item>
@@ -9,17 +11,13 @@
       class="bg-light-blue text-dark shadow-2 rounded-borders"
       style="max-width: 400px; width: 100%; margin: 15px;"
     >
-      <q-list>
-        <div
-          v-if="property.water.length != 0"
-        >     
+      <div v-if="property.water.length > 0" >     
         <q-item
-          class="bg-light-blue-10 text-white"
-          style="text-align: center; font-size: 22px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase;"
+          class="bg-light-blue-10 text-white text-h6 text-weight-bold text-uppercase text-center"
+          style="letter-spacing: 3px; word-spacing: 5px;"
         >
           <q-item-section>{{ property.propertyName }}</q-item-section>
         </q-item>
-        <q-separator dark></q-separator>
         <q-item
           v-for="(water, wIndex) in property.water"
           :key="'w' + wIndex"
@@ -29,14 +27,13 @@
             <q-icon name="waves"></q-icon>
           </q-item-section>
           <q-item-section>{{ water.canNumber }}</q-item-section>
-          <q-item-section style="text-align: end;"
-            >&#8377; {{ water.arrears }}</q-item-section
-          >
+          <q-item-section style="text-align: end;">
+            &#8377; {{ water.arrears }}
+          </q-item-section>
         </q-item>
         </div>
-       
-      </q-list>
     </q-list>
+  </div>
   </q-page>
 </template>
 
@@ -44,7 +41,6 @@
 import { db } from "../db";
 
 export default {
-  // name: 'PageName',
   data() {
     return {
       properties: [],
