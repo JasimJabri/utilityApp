@@ -289,7 +289,7 @@ export default {
       addUnitData: [],
       originalUnitData: {},
       maximizedToggle: true,
-      currentDate: 0,
+      currentDate: Date.now(),
     };
   },
   created() {

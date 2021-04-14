@@ -1,8 +1,8 @@
 <template>
   <q-page padding>
 
-    <div style="min-height: 10vh; text-align: center; font-size: 1.2em;" class="row wrap justify-center items-center content-center">
       <div v-if="properties.length == 0">
+    <div style="min-height: 10vh; text-align: center; font-size: 1.2em;" class="row wrap justify-center items-center content-center">
         No properties listed.<br> Please add new property by clicking on the '+' sign, located at the top right hand corner of this screen.
       </div>
     </div>

@@ -1,7 +1,7 @@
 <template>
   <q-page style="max-width: 600px; width: 90%;  margin: 0 auto;" padding>
     <div class="row justify-center">
-      <div class="col-4">
+      <div class="col-xs-10 col-sm-7 col-md-6 col-lg-5">
         <q-select
           v-if="!showUnit"
           outlined

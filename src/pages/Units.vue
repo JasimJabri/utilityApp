@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md doc-container">
     <div class="row justify-center">
-      <div class="col-4">
+      <div class="col-xs-10 col-sm-7 col-md-4 col-lg-3">
         <q-select
           outlined
           v-model="model"
