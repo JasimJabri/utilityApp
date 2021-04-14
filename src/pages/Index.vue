@@ -8,15 +8,15 @@
     >
       <q-list>
         <q-item
-          class="bg-black"
-          style="text-align: center; font-size: 22px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase;"
+          class="bg-black text-h5 text-weight-bold text-center"
+          style="letter-spacing: 3px;"
         >
           <q-item-section>{{ property.propertyName }}</q-item-section>
         </q-item>
         <q-separator dark></q-separator>
         <q-item
           class="bg-grey-9"
-          style="font-size:18px; font-weight: 400; text-align: center; letter-spacing: 3px;"
+          style="font-size:18px; font-weight: 500; text-align: center; letter-spacing: 3px;"
         >
           <q-item-section>Electricity Bills</q-item-section>
         </q-item>
@@ -26,7 +26,8 @@
           @click.native="viewUnit(unit, uIndex, pIndex)"
           v-for="(unit, uIndex) in property.units"
           v-bind:key="uIndex"
-          style="font-size:18px; cursor: pointer;"
+          class="text-h6"
+          style="cursor: pointer; "
         >
           <q-item-section avatar>
             <q-icon name="emoji_objects"></q-icon>
@@ -41,7 +42,7 @@
         <q-separator dark></q-separator>
         <q-item
           class="bg-grey-9"
-          style="font-size:18px; font-weight: 400; text-align: center; letter-spacing: 2px;"
+          style="font-size:18px; font-weight: 500; text-align: center; letter-spacing: 2px;"
         >
           <q-item-section>Water Bills</q-item-section>
         </q-item>
@@ -49,7 +50,7 @@
         <q-item
           v-for="(water, wIndex) in property.water"
           :key="'w' + wIndex"
-          style="font-size:18px"
+          class="text-h6"
         >
           <q-item-section avatar>
             <q-icon name="waves"></q-icon>

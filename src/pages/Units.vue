@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md doc-container">
     <div class="row justify-center">
-      <div class="col-xs-10 col-sm-7 col-md-4 col-lg-3">
+      <div class="col-xs-11 col-sm-8 col-md-4 col-lg-3 bg-grey-3">
         <q-select
           outlined
           v-model="model"
@@ -18,17 +18,20 @@
     <br>
     <br>
     <div class="row justify-center">
-      <q-list v-if="model != null">
-         <q-item class="row justify-between" style="width: 400px; border-color:lightgrey; border-style:solid; border-width: 2px;" >
-         <div style="text-align: center; width: 300px;">Unit Name
+      <q-list v-if="model != null"
+        class="col-xs-11 col-sm-8 col-md-4 col-lg-3 bg-grey-10 rounded-borders"
+      >
+         <q-item class="row flex justify-start text-uppercase text-white text-h6"  >
+         <div class="col-8">Unit Name
            </div>  
-         <div style="text-align: center; width: 100px;">Edit</div>  
+          
+         <div class="col-4 flex justify-center">Edit</div>  
         </q-item>
-        <q-item class="row justify-between" style="width: 400px; background: lightgrey;" v-for="unit in units" v-bind:key="unit.unitId">
-         <div style="text-align: center; width: 300px; text-transform: capitalize;">
+        <q-item class="row bg-grey-3" v-for="unit in units" v-bind:key="unit.unitId">
+         <div class="flex items-center justify-start col-8 text-capitalize text-h6">
            {{unit.unitName}}
            </div>
-         <q-btn  style="text-align: center; width: 100px;" @click="editUnit(unit)">Edit</q-btn>  
+         <q-btn class="col-4" color="primary" label="edit" @click="editUnit(unit)"></q-btn>  
         </q-item>
       </q-list>
     </div>

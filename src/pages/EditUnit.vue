@@ -1,10 +1,10 @@
 <template>
-  <q-page style="max-width: 600px; width: 90%;  margin: 0 auto;" padding>
-      <q-list style="width: 80%" class="bg-white">
+  <q-page class="row justify-center q-py-md">
+      <q-list class="col-xs-10 col-sm-8 col-md-5 col-lg-4 bg-grey-3 fixed-center">
         <q-banner class="bg-black text-white text-center">
           <div
-            class="text-h5 text-weight-bold"
-            style="letter-spacing: 2px; text-transform: uppercase;"
+            class="text-h5 text-weight-bold text-uppercase"
+            style="letter-spacing: 6px;"
           >Unit Details</div>
         </q-banner>
         <br />
@@ -12,8 +12,9 @@
           <q-item>
             <q-input
               outlined
+              autofocus
+              class="full-width text-capitalize text-h6"
               hint="Unit Name"
-              style="width:100%; text-transform: capitalize;"
               type="text"
               :rules="[ 
                 value => !!value || '* Required',
@@ -27,9 +28,9 @@
           <q-item>
             <q-input
               outlined
+              class="full-width text-capitalize text-h6"
               mask="#########"
               hint="Unique Service Number"
-              style="width:100%;"
               type="text"
               :rules="[ 
                 val => !!val || '* Required',
@@ -42,8 +43,8 @@
           <q-item>
             <q-input
               outlined
+              class="full-width text-capitalize text-h6"
               hint="Tenant Name (optional)"
-              style="width:100%; text-transform: capitalize"
               type="text"
               v-model="unit.tenantName"
             ></q-input>
@@ -51,15 +52,15 @@
           <q-item>
             <q-input
               outlined
+              class="full-width text-capitalize text-h6"
               :readonly="true"
               hint="Property Name"
-              style="width:100%; text-transform: capitalize;"
               type="text"
               v-model="unit.propertyName"
             ></q-input>
           </q-item>
           <br />
-          <q-item class="row justify-between">
+          <q-item class="row justify-around">
             <q-btn label="Save unit" type="submit" color="positive"></q-btn>
             <q-btn label="Delete unit" color="negative" @click="deleteUnit()"></q-btn>
           </q-item>
