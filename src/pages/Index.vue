@@ -290,10 +290,11 @@ export default {
       addUnitData: [],
       originalUnitData: {},
       maximizedToggle: true,
-      currentDate: Date.now(),
+      currentDate: Date,
     };
   },
   created() {
+    this.currentDate = Date.now()
     this.properties.length = 0;
     let user = this.$q.localStorage.getItem("user");
     let isLoggedIn = this.$q.localStorage.getItem("isLoggedIn");
